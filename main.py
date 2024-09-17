@@ -14,6 +14,13 @@ def main():
     running = True
 
     while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE and menu.is_active:
+                    menu.is_active = False
+
         if menu.is_active:
             menu.run()
         else:
@@ -21,10 +28,6 @@ def main():
 
         pygame.display.flip()
         clock.tick(60)
-
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
 
     pygame.quit()
 
